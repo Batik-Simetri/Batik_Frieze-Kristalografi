@@ -2,140 +2,248 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Pembangkitan Motif Batik (Frieze dan Kristalografi)</title>
   <style>
-    /* Modern styling and mobile optimizations */
+    :root {
+      --primary-blue: #2563eb;
+      --primary-blue-hover: #1e40af;
+      --background-color: #ffffff;
+      --text-color: #6b7280;
+      --heading-color: #111827;
+      --field-background: #f9fafb;
+      --field-border: #d1d5db;
+      --font-family-base: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+      --shadow-color: rgba(0, 0, 0, 0.05);
+      --border-radius: 0.75rem;
+      --spacing: 1rem;
+      --max-content-width: 1200px;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 10px;
-      background: #fff;
-      color: #333;
+      margin: 0;
+      background: var(--background-color);
+      color: var(--text-color);
+      font-family: var(--font-family-base);
+      line-height: 1.6;
+      font-size: 1rem;
+      user-select: none;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      -webkit-user-select: none;
       user-select: none;
+    }
+    main.container {
+      max-width: var(--max-content-width);
+      margin: 0 auto;
+      padding: var(--spacing);
+      user-select: text;
     }
     h1 {
       font-weight: 700;
-      font-size: 1.6rem;
-      margin-bottom: 10px;
-      color: #2c3e50;
+      font-size: 3rem;
+      color: var(--heading-color);
+      margin-bottom: 2rem;
       text-align: center;
+      user-select: text;
+      line-height: 1.1;
     }
     label {
-      margin: 0 6px 0 0;
-      font-weight: 500;
+      margin-right: 0.5rem;
+      font-weight: 600;
+      color: var(--heading-color);
+      user-select: text;
+    }
+    input[type=color], input[type=number], select {
+      border: 1px solid var(--field-border);
+      border-radius: var(--border-radius);
+      padding: 0.25rem 0.5rem;
+      font-size: 1rem;
+      color: var(--heading-color);
+      background: #fff;
+      user-select: text;
+      transition: border-color 0.2s ease;
     }
     input[type=color] {
+      width: 3rem;
+      height: 2rem;
       vertical-align: middle;
-      margin: 0 10px 0 5px;
-      height: 28px;
-      width: 48px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
+      padding: 0;
       cursor: pointer;
     }
     input[type=number] {
-      width: 64px;
-      margin: 0 10px 0 5px;
-      padding: 3px 5px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
+      width: 4.5rem;
     }
-    select {
-      margin: 0 10px 0 5px;
-      padding: 3px 5px;
-      border-radius: 4px;
-      font-size: 1rem;
-      border: 1px solid #ccc;
+    input[type=color]:focus, input[type=number]:focus, select:focus {
+      outline: none;
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+    }
+    fieldset {
+      border: 1px solid var(--field-border);
+      padding: 1rem 1rem 1.5rem;
+      border-radius: var(--border-radius);
+      background: var(--field-background);
+      box-shadow: 0 1px 4px var(--shadow-color);
+      margin-bottom: 1.5rem;
+    }
+    legend {
+      font-weight: 700;
+      font-size: 1.125rem;
+      color: var(--primary-blue-hover);
+      padding: 0 0.5rem;
+      user-select: text;
+    }
+    h3 {
+      font-weight: 700;
+      font-size: 1.75rem;
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+      color: var(--primary-blue);
+      text-align: center;
+      user-select: text;
+    }
+    /* Grouping container with scroll for all tiles */
+    #tilesScrollContainer {
+      max-height: 400px;
+      overflow-y: auto;
+      padding-right: 1rem;
+      margin-bottom: 2rem;
+      border: 1px solid var(--field-border);
+      border-radius: var(--border-radius);
+      background: var(--field-background);
+      box-shadow: 0 2px 6px var(--shadow-color);
+      user-select: text;
+    }
+    .tile-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    .checkbox-label {
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
     }
     button {
-      margin: 10px 10px 20px 0;
-      padding: 10px 18px;
-      font-weight: 600;
-      font-size: 1rem;
+      background-color: var(--primary-blue);
       border: none;
-      border-radius: 5px;
-      color: #fff;
-      background: #3498db;
+      border-radius: var(--border-radius);
+      color: white;
+      font-weight: 700;
+      font-size: 1.125rem;
+      padding: 0.75rem 2rem;
+      margin: 1rem 1rem 2rem 0;
       cursor: pointer;
-      transition: background 0.3s;
+      box-shadow: 0 4px 8px rgba(37, 99, 235, 0.4);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
       user-select: none;
     }
-    button:hover {
-      background: #2980b9;
+    button:hover, button:focus {
+      background-color: var(--primary-blue-hover);
+      box-shadow: 0 6px 12px rgba(29, 78, 216, 0.5);
+      outline-offset: 2px;
+      outline: 2px solid var(--primary-blue-hover);
     }
     button:active {
-      background: #1c5a8b;
+      background-color: #1e40af;
+      box-shadow: none;
     }
-    canvas {
+    canvas.main-canvas {
       display: block;
-      margin: 0 auto 25px auto;
-      border: 2px solid #2c3e50;
+      margin: 0 auto 3rem;
+      border: 2px solid var(--heading-color);
       max-width: 100%;
       height: auto;
       width: 800px;
       max-height: 600px;
-      box-shadow: 0 0 10px rgba(44, 62, 80, 0.2);
+      box-shadow: 0 4px 12px var(--shadow-color);
       touch-action: none;
+      border-radius: var(--border-radius);
+      user-select: none;
+      background: white;
     }
-    #tileControls {
-      max-width: 800px;
-      margin: 0 auto 15px auto;
-      overflow-y: auto;
-      max-height: 320px;
-      padding-right: 10px;
-      user-select: text;
+    .custom-tile {
+      border: 2px solid var(--primary-blue);
+      border-radius: var(--border-radius);
+      width: 100px;
+      height: 100px;
+      display: block;
+      margin-bottom: 0.75rem;
+      touch-action: none;
+      cursor: crosshair;
+      box-shadow: 0 0 8px var(--shadow-color);
+      user-select: none;
+      background: white; /* plain white background as requested */
+      position: relative;
     }
-    fieldset {
-      margin-bottom: 12px;
-      padding: 10px 13px;
-      border-radius: 6px;
-      border: 2px solid #3498db;
-      background: #f4faff;
+    .custom-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
     }
-    legend {
-      font-weight: 700;
-      color: #2980b9;
-      padding: 0 5px;
+    .custom-controls button {
+      padding: 0.5rem 1rem;
+      font-size: 0.95rem;
+      user-select: none;
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.4);
+      transition: background-color 0.25s ease, box-shadow 0.25s ease;
     }
-    @media (max-width: 600px) {
-      body {
-        margin: 6px;
-      }
-      canvas {
-        width: 100%;
-        height: auto;
-      }
-      #tileControls {
-        max-height: 260px;
-        padding-right: 5px;
-      }
-      input[type=number], select {
-        width: 50px;
-        font-size: 0.9rem;
-      }
+    .custom-controls button:hover, .custom-controls button:focus {
+      background-color: var(--primary-blue-hover);
+      box-shadow: 0 4px 10px rgba(29, 78, 216, 0.7);
+      outline-offset: 2px;
+      outline: 2px solid var(--primary-blue-hover);
+    }
+    .custom-controls label {
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--heading-color);
+    }
+    @media (max-width: 700px) {
+      body { font-size: 0.9rem; }
+      canvas.main-canvas { width: 100%; height: auto; }
+      input[type=number] { width: 3.5rem; }
       button {
-        font-size: 0.95rem;
-        padding: 9px 14px;
+        font-size: 1rem;
+        padding: 0.6rem 1.5rem;
+        margin: 1rem 0.75rem 2rem 0;
       }
+      .custom-tile { width: 80px; height: 80px; }
+      .custom-controls { gap: 0.5rem; }
     }
   </style>
 </head>
 <body>
-  <h1>Pembangkitan Motif Batik (Frieze dan Kristalografi)</h1>
+  <main class="container" role="main">
+    <h1>Pembangkitan Motif Batik (Frieze dan Kristalografi)</h1>
 
-  <label for="bgColor">Warna Latar Belakang:</label>
-  <input type="color" id="bgColor" value="#ffffff" aria-label="warna latar belakang">
+    <label for="bgColor">Warna Latar Belakang:</label>
+    <input type="color" id="bgColor" value="#ffffff" aria-label="warna latar belakang" />
 
-  <canvas id="canvas" width="800" height="600" aria-label="kanvas pola batik"></canvas>
+    <canvas id="canvas" class="main-canvas" width="800" height="600" aria-label="kanvas pola batik"></canvas>
 
-  <div id="tileControls" aria-live="polite" aria-atomic="true"></div>
+    <div id="tilesScrollContainer">
+      <div id="tileControls" aria-live="polite" aria-atomic="true"></div>
+    </div>
 
-  <button onclick="gambarPola()" aria-label="gambar pola batik">Gambar Pola</button>
-  <button onclick="downloadGambar()" aria-label="download gambar pola batik">Download Gambar</button>
+    <button onclick="gambarPola()" aria-label="gambar pola batik">Gambar Pola</button>
+    <button onclick="downloadGambar()" aria-label="download gambar pola batik">Download Gambar</button>
+  </main>
 
   <script>
     const friezeList = ['kawung', 'parang', 'truntum', 'ceplok', 'lereng', 'sido_mukti', 'mega_mendung', 'peksi', 'sawat', 'tumpal'];
@@ -143,437 +251,615 @@
 
     const container = document.getElementById('tileControls');
 
+    // Build Frieze tiles (10 predefined)
     container.innerHTML += '<h3>Tile Frieze (Pilih 1 Maksimal)</h3>';
-    friezeList.forEach((bentuk, index) => {
+    friezeList.forEach((shape, idx) => {
       container.innerHTML += `
-        <fieldset class="frieze-tile">
-          <legend>Tile Frieze ${index + 1}</legend>
-          <label><input type="checkbox" class="aktif-frieze" name="frieze-select" aria-label="aktif tile frieze ${bentuk.replace('_', ' ')}"> Aktif</label><br>
-          <label>Bentuk: <strong>${bentuk.replace('_', ' ')}</strong></label>
-          <input type="hidden" class="bentuk" value="${bentuk}">
-          <br>
-          <label>Warna:</label>
-          <input type="color" class="warna" value="#ff69b4" aria-label="warna tile frieze ${bentuk.replace('_', ' ')}">
-          <label>Ukuran:</label>
-          <input type="number" class="ukuran" value="40" min="10" max="100" aria-label="ukuran tile frieze ${bentuk.replace('_', ' ')}">
-          <label>Grup:</label>
-          <select class="grup" aria-label="grup tile frieze ${bentuk.replace('_', ' ')}">
-            <option value="p1">p1</option>
-            <option value="p11g">p11g</option>
-            <option value="p1m1">p1m1</option>
-            <option value="p1a1">p1a1</option>
-            <option value="p11m">p11m</option>
-            <option value="p2">p2</option>
-            <option value="p2mg">p2mg</option>
-          </select>
-        </fieldset>
-      `;
+        <fieldset class="frieze-tile" data-index="${idx}">
+          <legend>Tile Frieze ${idx + 1}</legend>
+          <label class="checkbox-label">
+            <input type="checkbox" class="aktif-frieze" name="frieze-select" aria-label="aktif tile frieze ${shape.replace('_', ' ')}" />
+            Aktif
+          </label>
+          <label>Bentuk: <strong>${shape.replace('_', ' ')}</strong></label>
+          <input type="hidden" class="bentuk" value="${shape}" />
+          <div class="tile-row">
+            <label>Warna:</label>
+            <input type="color" class="warna" value="#ff69b4" aria-label="warna tile frieze ${shape.replace('_', ' ')}" />
+            <label>Ukuran:</label>
+            <input type="number" class="ukuran" value="40" min="10" max="100" aria-label="ukuran tile frieze ${shape.replace('_', ' ')}" />
+            <label>Grup:</label>
+            <select class="grup" aria-label="grup tile frieze ${shape.replace('_', ' ')}">
+              <option value="p1">p1</option><option value="p11g">p11g</option>
+              <option value="p1m1">p1m1</option><option value="p1a1">p1a1</option>
+              <option value="p11m">p11m</option><option value="p2">p2</option>
+              <option value="p2mg">p2mg</option>
+            </select>
+          </div>
+        </fieldset>`;
     });
 
+    // Frieze 11 - Custom tile with checkbox and clear, unchecked by default
+    container.innerHTML += `
+      <fieldset class="frieze-tile frieze-custom-tile" data-index="10">
+        <legend>Tile Frieze 11 - Menggambar Tile Sendiri</legend>
+        <label class="checkbox-label">
+          <input type="checkbox" id="friezeCustomActive" aria-label="aktif tile sendiri frieze" />
+          Aktif
+        </label>
+        <div class="custom-controls">
+          <label>Warna:
+            <input type="color" class="custom-warna" value="#000000" aria-label="warna tile sendiri frie" />
+          </label>
+          <label>Ukuran:
+            <input type="number" class="custom-ukuran" value="40" min="10" max="100" aria-label="ukuran tile sendiri frie" />
+          </label>
+          <label>Grup:
+            <select class="custom-grup" aria-label="grup tile sendiri frie">
+              <option value="p1">p1</option><option value="p11g">p11g</option>
+              <option value="p1m1">p1m1</option><option value="p1a1">p1a1</option>
+              <option value="p11m">p11m</option><option value="p2">p2</option>
+              <option value="p2mg">p2mg</option>
+            </select>
+          </label>
+          <button type="button" id="friezeCustomClear">Bersihkan</button>
+        </div>
+        <canvas class="custom-tile" width="100" height="100" aria-label="kanvas tile sendiri frieze"></canvas>
+      </fieldset>
+    `;
+
+    // Kristalografi tiles (10 predefined)
     container.innerHTML += '<h3>Tile Kristalografi (Pilih Maks 3)</h3>';
-    kristalografiList.forEach((bentuk, index) => {
+    kristalografiList.forEach((shape, idx) => {
       container.innerHTML += `
-        <fieldset class="kristalografi-tile">
-          <legend>Tile Kristalografi ${index + 1}</legend>
-          <label><input type="checkbox" class="aktif-kristal" aria-label="aktif tile kristalografi ${bentuk.replace('_', ' ')}"> Aktif</label><br>
-          <label>Bentuk: <strong>${bentuk.replace('_', ' ')}</strong></label>
-          <input type="hidden" class="bentuk" value="${bentuk}">
-          <br>
-          <label>Warna:</label>
-          <input type="color" class="warna" value="#ff69b4" aria-label="warna tile kristalografi ${bentuk.replace('_', ' ')}">
-          <label>Ukuran:</label>
-          <input type="number" class="ukuran" value="40" min="10" max="100" aria-label="ukuran tile kristalografi ${bentuk.replace('_', ' ')}">
-          <label>Grup:</label>
-          <select class="grup" aria-label="grup tile kristalografi ${bentuk.replace('_', ' ')}">
-            <option value="p1">p1</option>
-            <option value="p2">p2</option>
-            <option value="pm">pm</option>
-            <option value="pg">pg</option>
-            <option value="cm">cm</option>
-            <option value="pmm">pmm</option>
-            <option value="pmg">pmg</option>
-            <option value="pgg">pgg</option>
-            <option value="cmm">cmm</option>
-            <option value="p4">p4</option>
-            <option value="p4m">p4m</option>
-            <option value="p4g">p4g</option>
-            <option value="p3">p3</option>
-            <option value="p3m1">p3m1</option>
-            <option value="p31m">p31m</option>
-            <option value="p6">p6</option>
-            <option value="p6m">p6m</option>
-          </select>
-        </fieldset>
-      `;
+        <fieldset class="kristalografi-tile" data-index="${idx}">
+          <legend>Tile Kristalografi ${idx + 1}</legend>
+          <label class="checkbox-label">
+            <input type="checkbox" class="aktif-kristal" aria-label="aktif tile kristalografi ${shape.replace('_', ' ')}" />
+            Aktif
+          </label>
+          <label>Bentuk: <strong>${shape.replace('_', ' ')}</strong></label>
+          <input type="hidden" class="bentuk" value="${shape}" />
+          <div class="tile-row">
+            <label>Warna:</label>
+            <input type="color" class="warna" value="#ff69b4" aria-label="warna tile kristalografi ${shape.replace('_', ' ')}" />
+            <label>Ukuran:</label>
+            <input type="number" class="ukuran" value="40" min="10" max="100" aria-label="ukuran tile kristalografi ${shape.replace('_', ' ')}" />
+            <label>Grup:</label>
+            <select class="grup" aria-label="grup tile kristalografi ${shape.replace('_', ' ')}">
+              <option value="p1">p1</option><option value="p2">p2</option>
+              <option value="pm">pm</option><option value="pg">pg</option>
+              <option value="cm">cm</option><option value="pmm">pmm</option>
+              <option value="pmg">pmg</option><option value="pgg">pgg</option>
+              <option value="cmm">cmm</option><option value="p4">p4</option>
+              <option value="p4m">p4m</option><option value="p4g">p4g</option>
+              <option value="p3">p3</option><option value="p3m1">p3m1</option>
+              <option value="p31m">p31m</option><option value="p6">p6</option>
+              <option value="p6m">p6m</option>
+            </select>
+          </div>
+        </fieldset>`;
     });
 
-    // Prevent multiple frieze tiles selected at once (max 1)
-    container.addEventListener('change', (e) => {
-      if (e.target.classList.contains('aktif-frieze') && e.target.checked) {
+    // Kristalografi 11 - Custom tile with checkbox and clear button, unchecked by default
+    container.innerHTML += `
+      <fieldset class="kristalografi-tile kristalografi-custom-tile" data-index="10">
+        <legend>Tile Kristalografi 11 - Menggambar Tile Sendiri</legend>
+        <label class="checkbox-label">
+          <input type="checkbox" id="kristalCustomActive" aria-label="aktif tile sendiri kristalografi" />
+          Aktif
+        </label>
+        <div class="custom-controls">
+          <label>Warna:
+            <input type="color" class="custom-warna" value="#000000" aria-label="warna tile sendiri kristalografi" />
+          </label>
+          <label>Ukuran:
+            <input type="number" class="custom-ukuran" value="40" min="10" max="100" aria-label="ukuran tile sendiri kristalografi" />
+          </label>
+          <label>Grup:
+            <select class="custom-grup" aria-label="grup tile sendiri kristalografi">
+              <option value="p1">p1</option><option value="p2">p2</option>
+              <option value="pm">pm</option><option value="pg">pg</option>
+              <option value="cm">cm</option><option value="pmm">pmm</option>
+              <option value="pmg">pmg</option><option value="pgg">pgg</option>
+              <option value="cmm">cmm</option><option value="p4">p4</option>
+              <option value="p4m">p4m</option><option value="p4g">p4g</option>
+              <option value="p3">p3</option><option value="p3m1">p3m1</option>
+              <option value="p31m">p31m</option><option value="p6">p6</option>
+              <option value="p6m">p6m</option>
+            </select>
+          </label>
+          <button type="button" id="kristalCustomClear">Bersihkan</button>
+        </div>
+        <canvas class="custom-tile" width="100" height="100" aria-label="kanvas tile sendiri kristalografi"></canvas>
+      </fieldset>
+    `;
+
+    // Limit toggle for checkboxes
+    container.addEventListener('change', e => {
+      if(e.target.classList.contains('aktif-frieze') && e.target.checked){
         document.querySelectorAll('.aktif-frieze').forEach(chk => {
-          if (chk !== e.target) chk.checked = false;
+          if(chk !== e.target) chk.checked = false;
         });
       }
-      if (e.target.classList.contains('aktif-kristal')) {
-        const checkedKristal = Array.from(document.querySelectorAll('.aktif-kristal:checked'));
-        if (checkedKristal.length > 3) {
+      if(e.target.classList.contains('aktif-kristal')){
+        const checked = Array.from(document.querySelectorAll('.aktif-kristal:checked'));
+        if(checked.length > 3){
           e.target.checked = false;
           alert('Maksimal memilih 3 tile kristalografi.');
         }
       }
     });
 
-    function gambarTile(ctx, x, y, size, warna, bentuk) {
+    // Drawing functions: gambarTile, drawCustomTile, transformTile (unchanged from previous)
+    function gambarTile(ctx, x, y, size, warna, bentuk){
       ctx.fillStyle = warna;
       ctx.strokeStyle = warna;
       ctx.lineWidth = 2;
       ctx.beginPath();
-
-      switch (bentuk) {
+      switch(bentuk){
         case 'kawung':
-          for (let i = 0; i < 2; i++) {
-            for (let j = 0; j < 2; j++) {
+          for(let i=0; i<2; i++){
+            for(let j=0; j<2; j++){
               ctx.beginPath();
-              ctx.ellipse(x + size * (0.25 + 0.5 * i), y + size * (0.25 + 0.5 * j), size * 0.15, size * 0.4, 0, 0, Math.PI * 2);
+              ctx.ellipse(x + size*(0.25 + 0.5*i), y + size*(0.25 + 0.5*j), size*0.15, size*0.4, 0, 0, 2*Math.PI);
               ctx.stroke();
             }
           }
           break;
         case 'parang':
-          for (let i = 0; i < size; i += size / 4) {
+          for(let i=0; i<size; i += size/4){
             ctx.beginPath();
-            ctx.moveTo(x + i, y);
-            ctx.lineTo(x + i + size / 2, y + size);
+            ctx.moveTo(x+i,y);
+            ctx.lineTo(x+i+size/2,y+size);
             ctx.stroke();
           }
           break;
         case 'truntum':
-          for (let i = 0; i < 5; i++) {
-            let angle = (i * Math.PI * 2) / 5;
+          for(let i=0; i<5; i++){
+            let angle = 2*Math.PI/5*i;
             ctx.beginPath();
-            ctx.moveTo(x + size / 2, y + size / 2);
-            ctx.lineTo(x + size / 2 + Math.cos(angle) * size / 3, y + size / 2 + Math.sin(angle) * size / 3);
+            ctx.moveTo(x+size/2,y+size/2);
+            ctx.lineTo(x+size/2 + Math.cos(angle)*size/3, y+size/2 + Math.sin(angle)*size/3);
             ctx.stroke();
           }
           break;
         case 'ceplok':
           ctx.beginPath();
-          ctx.arc(x + size / 2, y + size / 2, size / 4, 0, Math.PI * 2);
+          ctx.arc(x+size/2,y+size/2,size/4,0,2*Math.PI);
           ctx.stroke();
-          ctx.strokeRect(x + size * 0.25, y + size * 0.25, size / 2, size / 2);
+          ctx.strokeRect(x+size*0.25,y+size*0.25,size/2,size/2);
           break;
         case 'lereng':
           ctx.beginPath();
-          let cx = x + size / 2;
-          let cy = y + size / 2;
+          const cx = x + size/2;
+          const cy = y + size/2;
           let radius = 2;
-          let maxRadius = size / 2 - 2;
-          let angle = 0;
-          ctx.moveTo(cx, cy);
-          while (radius < maxRadius) {
-            angle += 0.2;
+          const maxRadius = size/2 - 2;
+          let ang=0;
+          ctx.moveTo(cx,cy);
+          while(radius < maxRadius){
+            ang += 0.2;
             radius += 0.8;
-            ctx.lineTo(cx + Math.cos(angle) * radius, cy + Math.sin(angle) * radius);
+            ctx.lineTo(cx + Math.cos(ang)*radius, cy + Math.sin(ang)*radius);
           }
           ctx.stroke();
           break;
         case 'sido_mukti':
-          ctx.strokeRect(x + size * 0.25, y + size * 0.25, size / 2, size / 2);
+          ctx.strokeRect(x+size*0.25,y+size*0.25,size/2,size/2);
           ctx.beginPath();
-          ctx.moveTo(x + size * 0.25, y + size * 0.25);
-          ctx.lineTo(x + size * 0.75, y + size * 0.75);
-          ctx.moveTo(x + size * 0.75, y + size * 0.25);
-          ctx.lineTo(x + size * 0.25, y + size * 0.75);
+          ctx.moveTo(x+size*0.25,y+size*0.25);
+          ctx.lineTo(x+size*0.75,y+size*0.75);
+          ctx.moveTo(x+size*0.75,y+size*0.25);
+          ctx.lineTo(x+size*0.25,y+size*0.75);
           ctx.stroke();
           break;
         case 'mega_mendung':
           ctx.beginPath();
-          ctx.moveTo(x, y + size / 2);
-          ctx.quadraticCurveTo(x + size / 3, y, x + size / 2, y + size / 2);
-          ctx.quadraticCurveTo(x + size * 2 / 3, y + size, x + size, y + size / 2);
+          ctx.moveTo(x,y+size/2);
+          ctx.quadraticCurveTo(x+size/3,y,x+size/2,y+size/2);
+          ctx.quadraticCurveTo(x+size*2/3,y+size,x+size,y+size/2);
           ctx.stroke();
           break;
         case 'peksi':
           ctx.beginPath();
-          ctx.ellipse(x + size / 2, y + size / 2, size / 4, size / 8, 0, 0, Math.PI * 2);
+          ctx.ellipse(x+size/2,y+size/2,size/4,size/8,0,0,2*Math.PI);
           ctx.fill();
           break;
         case 'sawat':
         case 'tumpal':
           ctx.beginPath();
-          ctx.moveTo(x + size / 2, y);
-          ctx.lineTo(x + size, y + size);
-          ctx.lineTo(x, y + size);
+          ctx.moveTo(x+size/2,y);
+          ctx.lineTo(x+size,y+size);
+          ctx.lineTo(x,y+size);
           ctx.closePath();
-          if (bentuk === 'tumpal') ctx.fill();
+          if(bentuk === 'tumpal') ctx.fill();
           else ctx.stroke();
           break;
         default:
-          ctx.fillRect(x, y, size, size);
+          ctx.fillRect(x,y,size,size);
       }
     }
 
-    function transformTile(ctx, x, y, size, warna, bentuk, grup) {
-      const draw = (dx = 0, dy = 0, scaleX = 1, scaleY = 1, rotate = 0) => {
+    function drawCustomTile(ctx, x, y, size, warna, customCanvas) {
+      if (customCanvas && customCanvas._points && customCanvas._points.length > 0) {
         ctx.save();
-        ctx.translate(x + dx, y + dy);
+        ctx.translate(x + size / 2, y + size / 2);
+        const scale = size / 100;
+        ctx.scale(scale, scale);
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.lineWidth = 4 / scale;
+        ctx.strokeStyle = warna;
+        ctx.fillStyle = 'transparent';
+        customCanvas._points.forEach(path => {
+          ctx.beginPath();
+          ctx.moveTo(path[0].x - 50, path[0].y - 50);
+          for (let i = 1; i < path.length; i++) {
+            ctx.lineTo(path[i].x - 50, path[i].y - 50);
+          }
+          ctx.stroke();
+        });
+        ctx.restore();
+      } else {
+        ctx.strokeStyle = warna;
+        ctx.lineWidth = 2;
+        ctx.strokeRect(x, y, size, size);
+      }
+    }
+    
+    function transformTile(ctx,x,y,size,warna,bentuk,grup,customCanvas=null){
+      const draw = (dx=0,dy=0,scaleX=1,scaleY=1,rotate=0)=>{
+        ctx.save();
+        ctx.translate(x+dx,y+dy);
         ctx.rotate(rotate);
-        ctx.scale(scaleX, scaleY);
-        gambarTile(ctx, -size / 2, -size / 2, size, warna, bentuk);
+        ctx.scale(scaleX,scaleY);
+        if(customCanvas){
+          drawCustomTile(ctx,-size/2,-size/2,size,warna,customCanvas);
+        } else {
+          gambarTile(ctx,-size/2,-size/2,size,warna,bentuk);
+        }
         ctx.restore();
       };
-      function drawRadialPattern(draw, count, radius, flipY = false) {
-        for (let i = 0; i < count; i++) {
-          const angle = (2 * Math.PI / count) * i;
-          const x = Math.cos(angle) * radius;
-          const y = Math.sin(angle) * radius;
-          draw(x, y, 1, flipY ? -1 : 1, angle);
+
+      function drawRadialPattern(draw,count,radius,flipY=false){
+        for(let i=0;i<count;i++){
+          const angle=2*Math.PI/count*i;
+          const xx=Math.cos(angle)*radius;
+          const yy=Math.sin(angle)*radius;
+          draw(xx,yy,1,flipY?-1:1,angle);
         }
       }
-
-      switch (grup) {
-        case 'p1':
-          draw(size / 2, size / 2);
-          break;
-        case 'p11g':
-          draw(size / 2, size / 3);
-          draw(size / 2, size / 1.5, 1, -1);
-          break;
-        case 'p1m1':
-          draw(size / 3, size / 2);
-          draw(size * 2 / 3, size / 2, 1, 1, Math.PI / 6);
-          break;
-        case 'p1a1':
-          draw(size / 3, size / 3);
-          draw(size * 2 / 3, size * 2 / 3, -1, 1);
-          break;
+      switch(grup){
+        case 'p1': draw(size/2,size/2); break;
+        case 'p11g': draw(size/2,size/3); draw(size/2,size/1.5,1,-1); break;
+        case 'p1m1': draw(size/3,size/2); draw(size*2/3,size/2,1,1,Math.PI/6); break;
+        case 'p1a1': draw(size/3,size/3); draw(size*2/3,size*2/3,-1,1); break;
         case 'p11m':
-          let positions = [
-            [size / 4, size / 4],
-            [size * 3 / 4, size / 4],
-            [size / 4, size * 3 / 4],
-            [size * 3 / 4, size * 3 / 4]
-          ];
-          positions.forEach(([dx, dy], i) => {
-            let rot = (i % 2 === 0) ? 0 : Math.PI / 4;
-            draw(dx, dy, 1, 1, rot);
+          [[size/4,size/4],[size*3/4,size/4],[size/4,size*3/4],[size*3/4,size*3/4]].forEach(([dx,dy],i)=>{
+            draw(dx,dy,1,1,i%2===0?0:Math.PI/4);
           });
           break;
-        case 'p2':
-          draw(size / 2, size / 2);
-          draw(size, size / 2, -1);
-          break;
-        case 'p2mg':
-          draw(size / 3, size / 2);
-          draw(size * 2 / 3, size / 2, 1, -1);
-          break;
-
-        case 'pm':
-          draw(size / 2, size / 2, 1, 1, 0);
-          draw(size * 0.75, size / 2, -1, 1, 0);
-          break;
-        case 'pg':
-          draw(size / 2, size / 2);
-          draw(size, size, -1, 1);
-          break;
-        case 'cm':
-          draw(size / 4, size / 4);
-          draw(size, size / 4, -1);
-          draw(size * 3 / 4, size * 3 / 4);
-          draw(size, size * 3 / 4, -1);
-          break;
+        case 'p2': draw(size/2,size/2); draw(size,size/2,-1); break;
+        case 'p2mg': draw(size/3,size/2); draw(size*2/3,size/2,1,-1); break;
+        case 'pm': draw(size/2,size/2,1,1,0); draw(size*0.75,size/2,-1,1,0); break;
+        case 'pg': draw(size/2,size/2); draw(size,size,-1,1); break;
+        case 'cm': draw(size/4,size/4); draw(size,size/4,-1); draw(size*3/4,size*3/4); draw(size,size*3/4,-1); break;
         case 'pmm':
-          for (let dx of [size / 4, size * 3 / 4]) {
-            for (let dy of [size / 4, size * 3 / 4]) {
-              draw(dx, dy);
-              draw(dx, dy, -1, 1);
-            }
-          }
+          [size/4,size*3/4].forEach(dx=>{
+            [size/4,size*3/4].forEach(dy=>{
+              draw(dx,dy); draw(dx,dy,-1,1);
+            });
+          });
           break;
-        case 'pgg':
-          draw(size / 6, size / 6);
-          draw(size * 3 / 6, size * 3 / 6);
-          break;
-        case 'pmg':
-          draw(size / 4, size / 4);
-          draw(size, size / 4, -1);
-          draw(size * 3 / 4, size * 3 / 4);
-          draw(size * 3 / 4, size, -1);
-          break;
+        case 'pgg': draw(size/6,size/6); draw(size*3/6,size*3/6); break;
+        case 'pmg': draw(size/4,size/4); draw(size,size/4,-1); draw(size*3/4,size*3/4); draw(size*3/4,size,-1); break;
         case 'cmm':
-          for (let dx of [size / 4, size * 3 / 4]) {
-            for (let dy of [size / 4, size * 3 / 4]) {
-              let idx = (dx === size / 4) ? 0 : 1;
-              let idy = (dy === size / 4) ? 0 : 1;
-              let rot = (idx + idy) * (Math.PI / 3);
-              draw(dx, dy, 0.6, 0.6, rot);
-            }
-          }
+          [size/4,size*3/4].forEach(dx=>{
+            [size/4,size*3/4].forEach(dy=>{
+              let idx = dx===size/4?0:1;
+              let idy = dy===size/4?0:1;
+              draw(dx,dy,0.6,0.6,(idx+idy)*Math.PI/3);
+            });
+          });
           break;
         case 'p4':
-          const hexStarCount = 6;
-          const hexRadius = size * 1.5;
-          for (let i = 0; i < hexStarCount; i++) {
-            const angle = (Math.PI * 2 / hexStarCount) * i;
-            draw(Math.cos(angle) * hexRadius, Math.sin(angle) * hexRadius, 1, 1, angle);
+          for(let i=0; i<6; i++){
+            const angle=2*Math.PI/6*i;
+            draw(Math.cos(angle)*size*1.5, Math.sin(angle)*size*1.5,1,1,angle);
           }
           break;
         case 'p4m':
-          for (let dx of [size / 4, size * 3 / 4]) {
-            for (let dy of [size / 4, size * 3 / 4]) {
-              draw(dx, dy, 1, 1, Math.PI / 6);
-              draw(dx, dy, 1, -1, -Math.PI / 6);
-            }
-          }
+          [size/4,size*3/4].forEach(dx=>{
+            [size/4,size*3/4].forEach(dy=>{
+              draw(dx,dy,1,1,Math.PI/6);
+              draw(dx,dy,1,-1,-Math.PI/6);
+            });
+          });
           break;
         case 'p4g':
-          {
-            const hexStarCount = 4; // original 6 changed to 4 to keep shape same but avoid overlap
-            const hexRadius = size * 0.7; // reduced to fit inside tile without overlap
-            for (let i = 0; i < hexStarCount; i++) {
-              const angle = (Math.PI * 2 / hexStarCount) * i;
-              const dx = Math.cos(angle) * hexRadius + size / 2;
-              const dy = Math.sin(angle) * hexRadius + size / 2;
-              draw(dx, dy, 1, 1, angle);
-            }
+          for(let i=0; i<4; i++){
+            const angle=2*Math.PI/4*i;
+            const dx=Math.cos(angle)*size*0.7 + size/2;
+            const dy=Math.sin(angle)*size*0.7 + size/2;
+            draw(dx,dy,1,1,angle);
           }
           break;
-        case 'p3':
-          drawRadialPattern(draw, 3, size * 0.9); // putar 120°
-          break;
-        case 'p3m1':
-          draw(size / 2, size / 4, 1, 1, 0.26);
-          draw(size / 4, size * 0.75, -1, 1, -0.52);
-          draw(size * 0.75, size * 0.75, 1, -1, 0.79);
-          break;
+        case 'p3': drawRadialPattern(draw,3,size*0.9); break;
+        case 'p3m1': draw(size/2,size/4,1,1,0.26); draw(size/4,size*0.75,-1,1,-0.52); draw(size*0.75,size*0.75,1,-1,0.79); break;
         case 'p31m':
-          const cmmPositions = [
-            [size / 4, size / 4],
-            [size * 3 / 4, size / 4],
-            [size / 4, size * 3 / 4],
-            [size * 3 / 4, size * 3 / 4]
-          ];
-
-          cmmPositions.forEach(([dx, dy], i) => {
-            const scale = (i % 2 === 0) ? 0.8 : 1.2;
-            const rotation = (i % 2 === 0) ? Math.PI / 4 : -Math.PI / 4;
-            draw(dx, dy, scale, scale, rotation);
+          [[size/4,size/4],[size*3/4,size/4],[size/4,size*3/4],[size*3/4,size*3/4]].forEach(([dx,dy],i)=>{
+            draw(dx,dy, i%2===0?0.8:1.2, i%2===0?0.8:1.2, i%2===0?Math.PI/4:-Math.PI/4);
           });
           break;
         case 'p6':
-          const count = 6;
-          const radius = size * 1.0;
-          for (let i = 0; i < count; i++) {
-            const angle = (2 * Math.PI / count) * i;
-            // Scale bervariasi kecil antara 0.8 sampai 1.2 untuk variasi visual
-            const scale = 0.8 + 0.4 * ((i % 3) / 2);
-            draw(Math.cos(angle) * radius, Math.sin(angle) * radius, scale, scale, angle);
+          for(let i=0; i<6; i++){
+            const angle=2*Math.PI/6*i;
+            draw(Math.cos(angle)*size*1, Math.sin(angle)*size*1, 0.8+0.4*((i%3)/2), 0.8+0.4*((i%3)/2), angle);
           }
           break;
         case 'p6m':
-          const starCount = 6;
-          const starRadius = size * 0.9;
-          for (let i = 0; i < starCount; i++) {
-            const angle = (2 * Math.PI / starCount) * i;
-            draw(Math.cos(angle) * starRadius, Math.sin(angle) * starRadius, 1, 1, angle);
-            draw(Math.cos(angle) * starRadius, Math.sin(angle) * starRadius, 1, -1, angle);
+          for(let i=0; i<6; i++){
+            const angle=2*Math.PI/6*i;
+            draw(Math.cos(angle)*size*0.9, Math.sin(angle)*size*0.9,1,1,angle);
+            draw(Math.cos(angle)*size*0.9, Math.sin(angle)*size*0.9,1,-1,angle);
           }
           break;
         default:
-          draw(size / 2, size / 2);
+          draw(size/2,size/2);
           break;
       }
     }
 
-    function gambarPola() {
+    function setupCustomTileCanvases(){
+      const canvases = document.querySelectorAll('canvas.custom-tile');
+      canvases.forEach(canvas=>{
+        const ctx = canvas.getContext('2d');
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.lineWidth = 4;
+        let drawing = false;
+        canvas._points = [];
+
+        function getXY(e){
+          const rect = canvas.getBoundingClientRect();
+          let clientX, clientY;
+          if(e.touches && e.touches.length){
+            clientX = e.touches[0].clientX;
+            clientY = e.touches[0].clientY;
+          }else{
+            clientX = e.clientX;
+            clientY = e.clientY;
+          }
+          return [clientX - rect.left, clientY - rect.top];
+        }
+
+        function startDrawing(e){
+          drawing = true;
+          const [x,y] = getXY(e);
+          ctx.beginPath();
+          ctx.moveTo(x,y);
+          canvas._points.push([{x,y}]);
+          e.preventDefault();
+        }
+        function continueDrawing(e){
+          if(!drawing) return;
+          const [x,y] = getXY(e);
+          ctx.lineTo(x,y);
+          ctx.stroke();
+          canvas._points[canvas._points.length - 1].push({x,y});
+          e.preventDefault();
+        }
+        function stopDrawing(e){
+          drawing = false;
+          e.preventDefault();
+        }
+
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', continueDrawing);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+        canvas.addEventListener('touchstart', startDrawing, {passive:false});
+        canvas.addEventListener('touchmove', continueDrawing, {passive:false});
+        canvas.addEventListener('touchend', stopDrawing);
+
+        canvas.addEventListener('contextmenu', e=>{
+          e.preventDefault();
+          clearCustomCanvas(canvas);
+          if(canvas.closest('fieldset').classList.contains('frieze-custom-tile')){
+            document.getElementById('friezeCustomActive').checked = false;
+          } else if(canvas.closest('fieldset').classList.contains('kristalografi-custom-tile')){
+            document.getElementById('kristalCustomActive').checked = false;
+          }
+        });
+
+        const parentFieldset = canvas.closest('fieldset');
+        ['custom-warna','custom-ukuran','custom-grup'].forEach(cls=>{
+          const control = parentFieldset.querySelector('.' + cls);
+          if(control){
+            control.addEventListener('input', ()=>{
+              if(!canvas._points || canvas._points.length === 0){
+                redrawCustomTileCanvas(canvas);
+              }
+            });
+          }
+        });
+
+        redrawCustomTileCanvas(canvas);
+      });
+
+      // Clear buttons functionality
+      document.getElementById('friezeCustomClear').addEventListener('click', () => {
+        const canvas = document.querySelector('.frieze-custom-tile canvas.custom-tile');
+        clearCustomCanvas(canvas);
+        document.getElementById('friezeCustomActive').checked = false;
+      });
+      document.getElementById('kristalCustomClear').addEventListener('click', () => {
+        const canvas = document.querySelector('.kristalografi-custom-tile canvas.custom-tile');
+        clearCustomCanvas(canvas);
+        document.getElementById('kristalCustomActive').checked = false;
+      });
+    }
+
+    function redrawCustomTileCanvas(canvas){
+      const ctx = canvas.getContext('2d');
+      const parentFieldset = canvas.closest('fieldset');
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      // Fill white background inside canvas fully
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      // Draw black border rectangle for tile size area
+      const ukuranInput = parentFieldset.querySelector('.custom-ukuran');
+      const ukuran = ukuranInput ? parseInt(ukuranInput.value) : 40;
+      ctx.strokeStyle = '#000000';
+      ctx.lineWidth = 2;
+      ctx.strokeRect((canvas.width - ukuran)/2, (canvas.height - ukuran)/2, ukuran, ukuran);
+    }
+
+    function clearCustomCanvas(canvas){
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      canvas._points = [];
+      redrawCustomTileCanvas(canvas);
+    }
+
+    function gambarPola(){
       const canvas = document.getElementById('canvas');
       const ctx = canvas.getContext('2d');
-
       const bgColor = document.getElementById('bgColor').value;
       ctx.fillStyle = bgColor;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      const friezeTiles = Array.from(document.querySelectorAll('.frieze-tile'))
-        .map(tile => ({
-          aktif: tile.querySelector('.aktif-frieze').checked,
-          bentuk: tile.querySelector('.bentuk').value,
-          warna: tile.querySelector('.warna').value,
-          ukuran: parseInt(tile.querySelector('.ukuran').value),
-          grup: tile.querySelector('.grup').value
-        }))
-        .filter(tile => tile.aktif);
+      const friezeTiles = Array.from(document.querySelectorAll('.frieze-tile:not(.frieze-custom-tile)')).map(tile => ({
+        aktifPredefined: tile.querySelector('.aktif-frieze').checked,
+        bentuk: tile.querySelector('.bentuk').value,
+        warna: tile.querySelector('.warna').value,
+        ukuran: Number(tile.querySelector('.ukuran').value),
+        grup: tile.querySelector('.grup').value,
+      }));
+      const activeFriezeTile = friezeTiles.find(t => t.aktifPredefined);
 
-      const kristalografiTiles = Array.from(document.querySelectorAll('.kristalografi-tile'))
-        .map(tile => ({
-          aktif: tile.querySelector('.aktif-kristal').checked,
-          bentuk: tile.querySelector('.bentuk').value,
-          warna: tile.querySelector('.warna').value,
-          ukuran: parseInt(tile.querySelector('.ukuran').value),
-          grup: tile.querySelector('.grup').value
-        }))
-        .filter(tile => tile.aktif);
+      const friezeCustomFieldset = document.querySelector('.frieze-custom-tile');
+      const friezeCustomCheckbox = document.getElementById('friezeCustomActive');
+      const friezeCustomCanvas = friezeCustomFieldset.querySelector('canvas.custom-tile');
+      const friezeCustomWarna = friezeCustomFieldset.querySelector('.custom-warna').value;
+      const friezeCustomUkuran = Number(friezeCustomFieldset.querySelector('.custom-ukuran').value);
+      const friezeCustomGrup = friezeCustomFieldset.querySelector('.custom-grup').value;
+      const friezeCustomActive = friezeCustomCheckbox.checked && friezeCustomCanvas._points && friezeCustomCanvas._points.length > 0;
 
-      if (friezeTiles.length > 1 || kristalografiTiles.length > 3) {
-        alert("Maksimal 1 tile frieze dan 3 tile kristalografi!");
+      const kristalografiTiles = Array.from(document.querySelectorAll('.kristalografi-tile:not(.kristalografi-custom-tile)')).map(tile => ({
+        aktifPredefined: tile.querySelector('.aktif-kristal').checked,
+        bentuk: tile.querySelector('.bentuk').value,
+        warna: tile.querySelector('.warna').value,
+        ukuran: Number(tile.querySelector('.ukuran').value),
+        grup: tile.querySelector('.grup').value,
+      }));
+      const activeKristalTiles = kristalografiTiles.filter(t => t.aktifPredefined);
+      if (activeKristalTiles.length > 3) {
+        alert('Maksimal memilih 3 tile kristalografi!');
         return;
       }
+      const kristalCustomFieldset = document.querySelector('.kristalografi-custom-tile');
+      const kristalCustomCheckbox = document.getElementById('kristalCustomActive');
+      const kristalCustomCanvas = kristalCustomFieldset.querySelector('canvas.custom-tile');
+      const kristalCustomWarna = kristalCustomFieldset.querySelector('.custom-warna').value;
+      const kristalCustomUkuran = Number(kristalCustomFieldset.querySelector('.custom-ukuran').value);
+      const kristalCustomGrup = kristalCustomFieldset.querySelector('.custom-grup').value;
+      const kristalCustomActive = kristalCustomCheckbox.checked && kristalCustomCanvas._points && kristalCustomCanvas._points.length > 0;
 
-      const friezeHeight = friezeTiles[0]?.ukuran || 0;
+      const friezeHeight = activeFriezeTile ? activeFriezeTile.ukuran : (friezeCustomActive ? friezeCustomUkuran : 0);
 
-      // Frieze atas
-      if (friezeTiles.length) {
-        const tile = friezeTiles[0];
-        for (let y = 0; y < friezeHeight; y += tile.ukuran) {
-          for (let x = 0; x < canvas.width; x += tile.ukuran) {
-            transformTile(ctx, x, y, tile.ukuran, tile.warna, tile.bentuk, tile.grup);
+      if(activeFriezeTile || friezeCustomActive){
+        let ukuran, warna, bentuk, grup, customCanvas;
+        if(activeFriezeTile){
+          ukuran = activeFriezeTile.ukuran;
+          warna = activeFriezeTile.warna;
+          bentuk = activeFriezeTile.bentuk;
+          grup = activeFriezeTile.grup;
+          customCanvas = null;
+        } else {
+          ukuran = friezeCustomUkuran;
+          warna = friezeCustomWarna;
+          bentuk = null;
+          grup = friezeCustomGrup;
+          customCanvas = friezeCustomCanvas;
+        }
+        for(let y = 0; y < friezeHeight; y += ukuran){
+          for(let x = 0; x < canvas.width; x += ukuran){
+            transformTile(ctx, x, y, ukuran, warna, bentuk, grup, customCanvas);
           }
         }
       }
 
-      // Frieze bawah
-      if (friezeTiles.length) {
-        const tile = friezeTiles[0];
+      if(activeFriezeTile || friezeCustomActive){
+        let ukuran, warna, bentuk, grup, customCanvas;
+        if(activeFriezeTile){
+          ukuran = activeFriezeTile.ukuran;
+          warna = activeFriezeTile.warna;
+          bentuk = activeFriezeTile.bentuk;
+          grup = activeFriezeTile.grup;
+          customCanvas = null;
+        } else {
+          ukuran = friezeCustomUkuran;
+          warna = friezeCustomWarna;
+          bentuk = null;
+          grup = friezeCustomGrup;
+          customCanvas = friezeCustomCanvas;
+        }
         const y = canvas.height - friezeHeight;
-        for (let x = 0; x < canvas.width; x += tile.ukuran) {
-          transformTile(ctx, x, y, tile.ukuran, tile.warna, tile.bentuk, tile.grup);
+        for(let x = 0; x < canvas.width; x += ukuran){
+          transformTile(ctx, x, y, ukuran, warna, bentuk, grup, customCanvas);
         }
       }
 
-      // Kristalografi tengah
-      if (kristalografiTiles.length > 0) {
-        let tileIndex = 0;
-        const topBoundary = friezeHeight;
-        const bottomBoundary = canvas.height - friezeHeight;
-        let maxHeight = bottomBoundary - topBoundary; // height available between friezes
+      let tileIndex = 0;
+      const topBoundary = friezeHeight;
+      const bottomBoundary = canvas.height - friezeHeight;
+      const maxHeight = bottomBoundary - topBoundary;
 
-        while (true) {
-          const tile = kristalografiTiles[tileIndex % kristalografiTiles.length];
-          const tileHeight = tile.ukuran;
+      const allKristalTiles = activeKristalTiles.slice();
+      if(kristalCustomActive){
+        allKristalTiles.push({
+          bentuk: null,
+          warna: kristalCustomWarna,
+          ukuran: kristalCustomUkuran,
+          grup: kristalCustomGrup,
+          customCanvas: kristalCustomCanvas,
+          isCustom: true,
+        });
+      }
+      if(allKristalTiles.length === 0) return;
 
-          // Calculate Y position for the current row
-          let y = topBoundary + tileIndex * tileHeight;
-          if (y + tileHeight > bottomBoundary) break; // stop if we exceed space
-
-          // Number of columns for the current tile size
-          const cols = Math.floor(canvas.width / tile.ukuran);
-
-          for (let i = 0; i < cols; i++) {
-            const x = i * tile.ukuran;
-            transformTile(ctx, x, y, tile.ukuran, tile.warna, tile.bentuk, tile.grup);
-          }
-          tileIndex++;
+      while(true){
+        const tile = allKristalTiles[tileIndex % allKristalTiles.length];
+        const ukuran = tile.ukuran;
+        const warna = tile.warna;
+        const bentuk = tile.bentuk || null;
+        const grup = tile.grup;
+        const customCanvas = tile.isCustom ? tile.customCanvas : null;
+        const tileHeight = ukuran;
+        const y = topBoundary + tileIndex * tileHeight;
+        if(y + tileHeight > bottomBoundary) break;
+        const cols = Math.floor(canvas.width / ukuran);
+        for(let i = 0; i < cols; i++){
+          const x = i * ukuran;
+          transformTile(ctx,x,y,ukuran,warna,bentuk,grup,customCanvas);
         }
+        tileIndex++;
       }
     }
 
-    function downloadGambar() {
+    function downloadGambar(){
       const canvas = document.getElementById('canvas');
       const link = document.createElement('a');
       link.download = 'motif_batik.png';
       link.href = canvas.toDataURL();
       link.click();
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      setupCustomTileCanvases();
+    });
   </script>
 </body>
 </html>
-
